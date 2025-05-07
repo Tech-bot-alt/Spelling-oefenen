@@ -1,138 +1,74 @@
 <!DOCTYPE html>
-<html>
+<html lang="nl">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="Revisit-After" content="7 days">
     <meta name="Robots" content="index, follow">
-    <meta name="viewport" id="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
     <title>Klas</title>
-    <meta name="description" content="">
     <link href="https://afbeeldingen.spellingoefenen.nl/spelling_oefenen/layout/icons/icon114.jpg" rel="apple-touch-icon-precomposed" sizes="114x114">
-    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Gloria+Hallelujah' rel='stylesheet' type='text/css'>
     <link rel='stylesheet' type='text/css' href='https://js.spellingoefenen.nl/spellingoefenen/styles/layout.css'>
     <link rel='stylesheet' type='text/css' href='https://js.spellingoefenen.nl/spellingoefenen/styles/layout_docenten.css'>
-    <link rel='stylesheet' type='text/css' href='https://js.spellingoefenen.nl/spellingoefenen/games/styles/wl.css'>
     <link rel='stylesheet' type='text/css' href='https://js.spellingoefenen.nl/spellingoefenen/styles/layout_responsive.css'>
-    <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js'></script>
-    <script>
-        taak = new Array();
-
-        function ge(elementId) {
-            if (document.getElementById(elementId)) {
-                return document.getElementById(elementId);
-            } else {
-                console.warn("A div with id " + elementId + " could not be found!");
-                return false;
-            }
-        }
-
-        function hideMe(id) {
-            $("#" + id).slideUp(150);
-        }
-
-        function showMe(id) {
-            $("#" + id).slideDown(150);
-        }
-
-        function toggleMe(id) {
-            $("#" + id).slideToggle(150);
-        }
-
-        function ajaxUpdate(dataString) {
-            console.log("ajaxUpdate: " + dataString);
-
-            $.ajax({
-                type: 'POST',
-                data: dataString,
-                url: 'https://spellingoefenen.nl/taken_ajax.php',
-                success: function(data) {
-                    ajaxReturn(data);
-                }
-            });
-        }
-
-        function ajaxReturn(data) {
-            console.log('ajaxReturn');
-            console.log(data);
-
-            var answer = $.parseJSON(data);
-
-            if (answer["a"] === "docentRefresh") {
-                for (key in answer) {
-                    if (key.substr(0, 9) == "antwoord_" && key.indexOf("_correct") <= 0) {
-                        var div_html = "";
-
-                        if (answer[key] == "") {
-                            div_html = "<span class=\"antwoord_leeg\">-</span>";
-                        } else {
-                            if (parseInt(answer[key + "_correct"]) == 1) {
-                                div_html = "<span class=\"antwoord_goed\">" + answer[key] + "</span>";
-                            } else {
-                                div_html = "<span class=\"antwoord_fout\">" + answer[key] + "</span>";
-                            }
-                        }
-
-                        var div_html_old = ge(key).innerHTML;
-
-                        if (div_html_old != div_html) {
-                            ge(key).style.backgroundColor = "#FFFF00";
-                        } else {
-                            ge(key).style.backgroundColor = "";
-                        }
-
-                        ge(key).innerHTML = div_html;
-                    }
-                }
-            }
-        }
-    </script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 </head>
 <body>
-    <div id='networkmenu'>
-        <a href='https://spellingoefenen.nl' class='networkmenu_item' id='networkmenu_1'>
-            <img src='https://afbeeldingen.spellingoefenen.nl/networkmenu/1.png' alt='Spellingoefenen.nl'>
-        </a>
-        <a href='https://spellingoefenen.nl/taaloefenen' target='_blank' class='networkmenu_item' id='networkmenu_2'>
-            <img src='https://afbeeldingen.spellingoefenen.nl/networkmenu/2.png' alt='Taaloefenen.nl'>
-        </a>
-        <a href='https://spellingoefenen.nl/sommenoefenen' target='_blank' class='networkmenu_item' id='networkmenu_3'>
-            <img src='https://afbeeldingen.spellingoefenen.nl/networkmenu/3.png' alt='Sommenoefenen.nl'>
-        </a>
-    </div>
-    <div class='header' id='header'>
-        <div class='header_div'>
-            <a href='https://spellingoefenen.nl' class='logo'></a>
-            <div id='menu' class='menu'>
-                <a href='https://spellingoefenen.nl/' class='button'>Home</a>
-                <a href='https://spellingoefenen.nl/oefenen.html' class='button'>Oefenen</a>
-                <a href='https://spellingoefenen.nl/dictee.html' class='button'>Dictee</a>
-                <a href='https://spellingoefenen.nl/werkwoorden-oefenen.html' class='button_alt'>Werkwoorden</a>
-                <a href='https://spellingoefenen.nl/spelletjes.html' class='button'>Spelletjes</a>
-                <a href='https://spellingoefenen.nl/taken.php' class='button_selected'>Klas</a>
-                <a href='https://spellingoefenen.nl/docenten.php' class='button'>Docenten</a>
+    <div class="header" id="header">
+        <div class="header_div">
+            <a href="https://spellingoefenen.nl" class="logo"></a>
+            <div id="menu" class="menu">
+                <a href="https://spellingoefenen.nl/" class="button">Home</a>
+                <a href="https://spellingoefenen.nl/oefenen.html" class="button">Oefenen</a>
+                <a href="https://spellingoefenen.nl/dictee.html" class="button">Dictee</a>
+                <a href="https://spellingoefenen.nl/werkwoorden-oefenen.html" class="button_alt">Werkwoorden</a>
+                <a href="https://spellingoefenen.nl/spelletjes.html" class="button">Spelletjes</a>
+                <a href="https://spellingoefenen.nl/taken.php" class="button_selected">Klas</a>
+                <a href="https://spellingoefenen.nl/docenten.php" class="button">Docenten</a>
             </div>
         </div>
     </div>
+
     <div id="template">
         <div id="layout">
-            <div id='center-part'>
-                <div class='centering'>
-                    <div class='main'>
-                        <h2>Kies jezelf in de lijst:</h2>
-                        <a href='https://spellingoefenen.nl/taken.php?choose_leerling=2525545' class='leerling'>Arseny</a>
-                        <a href='https://spellingoefenen.nl/taken.php?choose_leerling=2525544' class='leerling'>Hannah</a>
-                        <p>Moet je letters typen die niet op je toetsenbord voorkomen zoals ë, é of ü? Gebruik het schermtoetsenbord!</p>
-                    </div>
+            <div id="center-part">
+                <div class="centering">
+                    <h2>Kies jezelf in de lijst:</h2>
+                    <a href="https://spellingoefenen.nl/taken.php?choose_leerling=1" class="leerling">Arseny</a>
+                    <a href="https://spellingoefenen.nl/taken.php?choose_leerling=2" class="leerling">Hannah</a>
+                    <a href="https://spellingoefenen.nl/taken.php?choose_leerling=3" class="leerling">Isabella</a>
+                    <a href="https://spellingoefenen.nl/taken.php?choose_leerling=4" class="leerling">Julie</a>
+                    <a href="https://spellingoefenen.nl/taken.php?choose_leerling=5" class="leerling">Lana</a>
+                    <a href="https://spellingoefenen.nl/taken.php?choose_leerling=6" class="leerling">Lidewij</a>
+                    <a href="https://spellingoefenen.nl/taken.php?choose_leerling=7" class="leerling">Lina</a>
+                    <a href="https://spellingoefenen.nl/taken.php?choose_leerling=8" class="leerling">Lleyton</a>
+                    <a href="https://spellingoefenen.nl/taken.php?choose_leerling=9" class="leerling">Luuk</a>
+                    <a href="https://spellingoefenen.nl/taken.php?choose_leerling=10" class="leerling">Max B</a>
+                    <a href="https://spellingoefenen.nl/taken.php?choose_leerling=11" class="leerling">Max N</a>
+                    <a href="https://spellingoefenen.nl/taken.php?choose_leerling=12" class="leerling">Mila</a>
+                    <a href="https://spellingoefenen.nl/taken.php?choose_leerling=13" class="leerling">Noor</a>
+                    <a href="https://spellingoefenen.nl/taken.php?choose_leerling=14" class="leerling">Olivier</a>
+                    <a href="https://spellingoefenen.nl/taken.php?choose_leerling=15" class="leerling">Paul</a>
+                    <a href="https://spellingoefenen.nl/taken.php?choose_leerling=16" class="leerling">Pearl</a>
+                    <a href="https://spellingoefenen.nl/taken.php?choose_leerling=17" class="leerling">Pepijn</a>
+                    <a href="https://spellingoefenen.nl/taken.php?choose_leerling=18" class="leerling">Selah</a>
+                    <a href="https://spellingoefenen.nl/taken.php?choose_leerling=19" class="leerling">Sofia</a>
+                    <a href="https://spellingoefenen.nl/taken.php?choose_leerling=20" class="leerling">Sofie</a>
+                    <a href="https://spellingoefenen.nl/taken.php?choose_leerling=21" class="leerling">Sophia</a>
+                    <a href="https://spellingoefenen.nl/taken.php?choose_leerling=22" class="leerling">Stein</a>
+                    <a href="https://spellingoefenen.nl/taken.php?choose_leerling=23" class="leerling">Valérie</a>
+                    <br><br>
+                    <a href="https://spellingoefenen.nl/taken.php?a=logout" class="leerling">« Uitloggen</a>
                 </div>
             </div>
         </div>
     </div>
-    <div class='footer' style='background-color: #dfdfdf;'>
-        <div class='footer_div'>
-            © Tech-bot-alt | <a href='https://spellingoefenen.nl/privacy.html'>Privacy</a>
+
+    <footer style="background-color: #dfdfdf;">
+        <div class="footer_div">
+            © Tech-bot-alt | <a href="https://spellingoefenen.nl/privacy.html">Privacy</a>
         </div>
-    </div>
+    </footer>
 </body>
 </html>
